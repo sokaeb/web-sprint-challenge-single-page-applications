@@ -25,7 +25,7 @@ const initialFormErrors = {
 }
 
 // 3. declaring inital state of pizzaform to be empty
-const initialPizzaForm = []
+const initialPizzaOrders = []
 
 // 4. declaring initial state of button to be disabled
 const initialDisabled = true
@@ -33,7 +33,7 @@ const initialDisabled = true
 
 const App = () => {
 
-  const [pizza, setPizza] = useState(initialPizzaForm)
+  const [pizzaOrders, setPizzaOrders] = useState(initialPizzaOrders)
   const [formValues, setFormValues] = useState(initialFormValues)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
@@ -41,7 +41,7 @@ const App = () => {
   const postPizza = pizza => {
     axios.post('https://reqres.in/api/', pizza)
     .then(res => {
-      setPizza(pizza.concat(res.data))
+      setPizzaOrders(pizza.concat(res.data))
     })
     .catch(err => {
       debugger
@@ -86,7 +86,7 @@ const App = () => {
   }
 
   const submit = () => {
-    const newPizza = {
+    const pizza = {
       name: formValues.name.trim(),
       size: formValues.size,
       toppings: Object.keys(formValues.toppings).filter(tops => formValues.toppings[tops]),
@@ -103,19 +103,29 @@ useEffect(() => {
 
   return (
     <>
-      <h1>Lambda Eats</h1>
+      <nav>
+        <h1>Lambda Eats</h1>
+        <div className='nav-links'>
+          <Link to='/'>Home</Link>
+          <Link to='/PizzaForm'>CREATE</Link>
+        </div>
+      </nav>
+      
       <p>Create Your Own Pizza</p>
-      <button>CREATE</button>
-    {/* <Route path='/pizza'> */}
-      <PizzaForm
-        values={formValues}
-        inputChange={inputChange}
-        checkboxChange={checkboxChange}
-        submit={submit}
-        disabled={disabled}
-        errors={formErrors}
-      />
-    {/* </Route> */}
+     
+    <Switch>
+      <Route path='/PizzaForm'>
+        <PizzaForm
+          values={formValues}
+          inputChange={inputChange}
+          checkboxChange={checkboxChange}
+          submit={submit}
+          disabled={disabled}
+          errors={formErrors}
+        />
+      </Route>
+   
+    </Switch>
     </>
   );
 };
