@@ -34,7 +34,7 @@ export default function PizzaForm(props){
                 <label>Name&nbsp;
                     <input 
                         value={values.name}
-                        onChange={onInputChange}
+                        // onChange={onInputChange}
                         name='name'
                         type='text'
                         />
@@ -42,7 +42,7 @@ export default function PizzaForm(props){
 
                 <label>Pizza Size&nbsp; 
                     <select
-                        onChange={onInputChange}
+                        // onChange={onInputChange}
                         value={values.size}
                         name='size'
                     >
@@ -53,10 +53,46 @@ export default function PizzaForm(props){
                     </select>
                 </label>
 
+                <label>Pepperoni
+                    <input
+                        name='pepperoni'
+                        type='checkbox'
+                        checked={values.toppings.pepperoni}
+                        onChange={onCheckboxChange}
+                    />
+                </label>
+
+                <label>Sausage
+                    <input
+                        name='pepperoni'
+                        type='checkbox'
+                        checked={values.toppings.sausage}
+                        onChange={onCheckboxChange}
+                    />
+                </label>
+
+                <label>Mushrooms
+                    <input
+                        name='pepperoni'
+                        type='checkbox'
+                        checked={values.toppings.mushrooms}
+                        onChange={onCheckboxChange}
+                    />
+                </label>
+
+                <label>Spinach
+                    <input
+                        name='pepperoni'
+                        type='checkbox'
+                        checked={values.toppings.spinach}
+                        onChange={onCheckboxChange}
+                    />
+                </label>
+
                 <label>Special Instructions&nbsp;
                     <input 
                             value={values.instructions}
-                            onChange={onInputChange}
+                            // onChange={onInputChange}
                             name='instructions'
                             type='text'
                     />
