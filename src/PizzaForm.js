@@ -42,7 +42,7 @@ export default function PizzaForm(props){
                         name='name'
                         type='text'
                         />
-                    </label>
+                </label>
 
                 <label>Pizza Size&nbsp; 
                     <select
@@ -103,7 +103,7 @@ export default function PizzaForm(props){
                 </label>
             </div>
 
-             <button disabled={disabled}>SUBMIT</button>
+             <button id="submitBtn" disabled={disabled}>Add To Order</button>
         </form>
     )
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as yup from 'yup';
 import axios from 'axios';
 import { Route, Link, Switch } from 'react-router-dom';
+import Home from './Home'
 import PizzaForm from './PizzaForm';
 import formSchema from './validation/formSchema';
 
@@ -15,7 +16,7 @@ const initialFormValues = {
     mushrooms: false,
     spinach: false,
   },
-  special_instructions: '',
+  instructions: '',
 }
 
 // 2. declaring initial state for form errors
@@ -39,11 +40,10 @@ const App = () => {
   const [disabled, setDisabled] = useState(initialDisabled)
 
   const postPizza = pizza => {
-    axios.post('https://reqres.in/api/201', pizza)
-
+    axios.post('https://reqres.in/api/users', pizza)
     .then(res => {
       // setPizzaOrders(pizzaOrders.concat(res.data))
-      console.log(pizzaOrders)
+      console.log(res.data)
     })
     .catch(err => {
       debugger
@@ -93,7 +93,7 @@ const App = () => {
       name: formValues.name.trim(),
       size: formValues.size,
       toppings: Object.keys(formValues.toppings).filter(tops => formValues.toppings[tops]),
-      special_instructions: formValues.special_instructions.trim(),
+      instructions: formValues.instructions.trim(),
     } 
     postPizza(pizza)
   }
@@ -128,6 +128,11 @@ useEffect(() => {
           errors={formErrors}
         />
       </Route>
+
+      <Route path='/'>
+        <Home />
+      </Route>
+
     </Switch>
     </>
   );
