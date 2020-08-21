@@ -16,10 +16,14 @@ export default function PizzaForm(props){
      }
 
      const onCheckboxChange = evt => {
+         const { name, checked } = evt.target
+         checkboxChange(name, checked)
+     }
+
+     const onInputChange = evt => {
          const { name, value } = evt.target
          inputChange(name, value)
      }
-
 
     return (
         <form className='form container' onSubmit={onSubmit}>
@@ -34,7 +38,7 @@ export default function PizzaForm(props){
                 <label>Name&nbsp;
                     <input 
                         value={values.name}
-                        // onChange={onInputChange}
+                        onChange={onInputChange}
                         name='name'
                         type='text'
                         />
@@ -42,7 +46,7 @@ export default function PizzaForm(props){
 
                 <label>Pizza Size&nbsp; 
                     <select
-                        // onChange={onInputChange}
+                        onChange={onInputChange}
                         value={values.size}
                         name='size'
                     >
@@ -64,7 +68,7 @@ export default function PizzaForm(props){
 
                 <label>Sausage
                     <input
-                        name='pepperoni'
+                        name='sausage'
                         type='checkbox'
                         checked={values.toppings.sausage}
                         onChange={onCheckboxChange}
@@ -73,7 +77,7 @@ export default function PizzaForm(props){
 
                 <label>Mushrooms
                     <input
-                        name='pepperoni'
+                        name='mushrooms'
                         type='checkbox'
                         checked={values.toppings.mushrooms}
                         onChange={onCheckboxChange}
@@ -82,7 +86,7 @@ export default function PizzaForm(props){
 
                 <label>Spinach
                     <input
-                        name='pepperoni'
+                        name='spinach'
                         type='checkbox'
                         checked={values.toppings.spinach}
                         onChange={onCheckboxChange}
@@ -92,7 +96,7 @@ export default function PizzaForm(props){
                 <label>Special Instructions&nbsp;
                     <input 
                             value={values.instructions}
-                            // onChange={onInputChange}
+                            onChange={onInputChange}
                             name='instructions'
                             type='text'
                     />

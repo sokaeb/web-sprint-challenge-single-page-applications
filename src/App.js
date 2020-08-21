@@ -39,9 +39,11 @@ const App = () => {
   const [disabled, setDisabled] = useState(initialDisabled)
 
   const postPizza = pizza => {
-    axios.post('https://reqres.in/api/', pizza)
+    axios.post('https://reqres.in/api/201', pizza)
+
     .then(res => {
-      setPizzaOrders(pizza.concat(res.data))
+      // setPizzaOrders(pizzaOrders.concat(res.data))
+      console.log(pizzaOrders)
     })
     .catch(err => {
       debugger
@@ -52,6 +54,7 @@ const App = () => {
     })
   }
 
+  // Form Actions
   const inputChange = (name, value) => {
     yup
     .reach(formSchema, name)
@@ -90,7 +93,8 @@ const App = () => {
       name: formValues.name.trim(),
       size: formValues.size,
       toppings: Object.keys(formValues.toppings).filter(tops => formValues.toppings[tops]),
-    }
+      special_instructions: formValues.special_instructions.trim(),
+    } 
     postPizza(pizza)
   }
 
@@ -124,7 +128,6 @@ useEffect(() => {
           errors={formErrors}
         />
       </Route>
-   
     </Switch>
     </>
   );
